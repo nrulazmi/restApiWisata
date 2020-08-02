@@ -15,6 +15,12 @@ class CreatePemesanansTable extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
+            $table->string('Name');
+            $table->string('address');
+            $table->string('telp');
+            $table->string('order_date');
+            $table->string('tourist_destination');
+            $table->string('tour_packages');
             $table->timestamps();
         });
     }

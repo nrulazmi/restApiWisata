@@ -2,60 +2,65 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ResourceUser;
-use App\Http\Resources\UserResource;
-use App\User;
+use App\Http\Resources\PemesananResource;
+use App\Http\Resources\PemesanansResource;
+use App\Pemesanan;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class PemesananController extends Controller
 {
 
     public function index()
     {
         //
-        $users=User::paginate(5);
-        return (new UserResource($users))
+        $pesan=Pemesanan::paginate(5);
+        return (new PemesanansResource($pesan))
             ->response()
             ->setStatusCode(200);
     }
+
+   
+    public function create()
+    {
+        //
+    }
+
 
     public function store(Request $request)
     {
         //
-        $users=User::create($request->all());
+        $users=Pemesanan::create($request->all());
 
-        return (new ResourceUser($users))
+        return (new PemesananResource($users))
             ->response()
             ->setStatusCode(201);
     }
 
-
+  
     public function show($id)
     {
         //
-        $user=User::findOrFail($id);
-        return (new ResourceUser($user))
+        $user=Pemesanan::findOrFail($id);
+        return (new PemesananResource($user))
             ->response()
             ->setStatusCode(200);
     }
 
-
-  
+ 
     public function update(Request $request, $id)
     {
         //
-        $user=User::findOrFail($id);
+        $user=Pemesanan::findOrFail($id);
         $user->update($request->all());
-        return (new ResourceUser($user))
+        return (new PemesananResource($user))
             ->response()
             ->setStatusCode(200);
     }
-    
 
     public function delete($id)
     {
         //
-        $user=User::findOrFail($id);
+        $user=Pemesanan::findOrFail($id);
         $user->delete();
         return response() ->json([
             'status' => "Success deleted user"
